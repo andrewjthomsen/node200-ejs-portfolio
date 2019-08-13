@@ -15,13 +15,7 @@ app.set("views");
 
 app.set("view engine", "ejs");
 
-// app.get('/contact', (req, res) => {
-//   res.render('contact');
-// });
 
-// app.post('/thanks', (req, res) => {
-//   res.render('thanks', { contact: req.body })
-// });
 
 app.get("/", (req, res) => {
   const data = {
@@ -32,6 +26,14 @@ app.get("/", (req, res) => {
   };
   // Notice now the data is the second argument passed to the template render method
   res.render("index", data);
+});
+app.get('/contact', (req, res) => {
+  var contact = req.body;
+  res.render('contact', contact);
+});
+
+app.post('/thanks', (req, res) => {
+  res.render('thanks', { contact: req.body })
 });
 
 app.listen(8080, () => {
