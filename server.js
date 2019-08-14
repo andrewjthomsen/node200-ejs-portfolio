@@ -1,41 +1,37 @@
 const express = require("express");
+const request = require("request");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
-const profile = require("./profile");
+
 
 const app = express();
+
+const PORT = process.env.PORT || 8080;
 
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use("/static", express.static("public"));
 
-// then define the route that will use your custom router
-app.use("/profile", profile);
-app.set("views");
+app.set("views", "./views");
 
 app.set("view engine", "ejs");
 
-
-
 app.get("/", (req, res) => {
-  const data = {
-    person: {
-      firstName: "Tom",
-      lastName: "Scott"
-    }
-  };
-  // Notice now the data is the second argument passed to the template render method
-  res.render("index", data);
-});
-app.get('/contact', (req, res) => {
-  var contact = req.body;
-  res.render('contact', contact);
+  res.render("index");
 });
 
-app.post('/thanks', (req, res) => {
-  res.render('thanks', { contact: req.body })
+app.get("/contact", (req, res) => {
+  res.render("contact");
 });
 
-app.listen(8080, () => {
-  console.log("Listening at http://localhost:8080");
+app.post("/thanks", (req, res) => {
+  res.render("thanks", { contact: req.body });
+  console.log(req.body);
 });
+
+app.listen(PORT, () => {
+  console.log(`The server listening at http://localhost: ${PORT}`);
+});
+
+module.exports = app;

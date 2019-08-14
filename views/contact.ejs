@@ -1,21 +1,28 @@
 <html>
   <head>
     <title>Contact Tom</title>
+    <% include ./partials/head %>
   </head>
   <body>
-    <div>
+    <div class="jumbotron">
+        <header>
+            <% include ./partials/header %>
+          </header>
       <form action="/thanks" method="POST">
         <label for="firstName">First Name:</label>
-        <input id="firstName" name="firstName" type="text">
+        <input id="firstName" name="firstName" type="text" />
 
         <label for="lastName">Last Name:</label>
-        <input id="lastName" name="lastName" type="text">
+        <input id="lastName" name="lastName" type="text" />
 
         <label for="email">Email:</label>
-        <input id="email" name="email" type="text">
+        <input id="email" name="email" type="text" />
 
         <input type="submit" />
       </form>
     </div>
+    <footer>
+      <% include ./partials/footer %>
+    </footer>
   </body>
 </html>

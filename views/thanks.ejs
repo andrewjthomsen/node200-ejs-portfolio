@@ -1,10 +1,17 @@
 <html>
   <head>
     <title>Tom Thanks You</title>
+    <% include ./partials/head %>
   </head>
+  <header>
+    <% include ./partials/header %>
+  </header>
   <body>
-    <div>
+    <div class="jumbotron">
       Thank you <%= contact.firstName %> <%= contact.lastName %>.
     </div>
+    <footer>
+      <% include ./partials/footer %>
+    </footer>
   </body>
 </html>
