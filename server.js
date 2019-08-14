@@ -28,7 +28,37 @@ app.get("/contact", (req, res) => {
 app.post("/thanks", (req, res) => {
   res.render("thanks", { contact: req.body });
   console.log(req.body);
+
+  // GoogleSheets 
+  let values = [
+    [
+      // Cell values ...
+      req.body.firstName,
+      req.body.lastName,
+      req.body.email
+    ],
+    // Additional rows ...
+  ];
+  const resource = {
+    values,
+  };
+  this.sheetsService.spreadsheets.values.update({
+    spreadsheetId,
+    range,
+    valueInputOption,
+    resource,
+  }, (err, result) => {
+    if (err) {
+      // Handle error
+      console.log(err);
+    } else {
+      console.log('%d cells updated.', result.updatedCells);
+    }
+  });
 });
+
+
+
 
 app.listen(PORT, () => {
   console.log(`The server listening at http://localhost: ${PORT}`);
