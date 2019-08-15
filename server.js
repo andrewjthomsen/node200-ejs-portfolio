@@ -1,6 +1,7 @@
 const express = require("express");
 const request = require("request");
 const morgan = require("morgan");
+const path = require("path");
 const bodyParser = require("body-parser");
 
 
@@ -11,7 +12,11 @@ const PORT = process.env.PORT || 8080;
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use("/static", express.static("public"));
+// app.use(express.static("./public"));
+// app.use(express.static(path.join(__dirname,"public")));
+app.use("/styles",express.static(__dirname + "/styles"))
+
+
 
 app.set("views", "./views");
 
