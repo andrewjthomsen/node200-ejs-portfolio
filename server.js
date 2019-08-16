@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(express.static("./public"));
 // app.use(express.static(path.join(__dirname,"public")));
-app.use("/styles",express.static(__dirname + "/styles"))
+// app.use("/styles",express.static(__dirname + "/styles"))
 
 
 
